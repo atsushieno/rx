@@ -45,7 +45,8 @@ namespace System.Reactive.Linq.Observαble
             public override void OnError(Exception error)
             {
                 base._observer.OnError(error);
-                base.Dispose();
+                Sink<TSource> sink = this;
+                sink.Dispose();
             }
         }
     }

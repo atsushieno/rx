@@ -56,7 +56,8 @@ namespace System.Reactive.Linq.Observαble
             public override void OnCompleted()
             {
                 base._observer.OnCompleted();
-                base.Dispose();
+                Sink<TSource> sink = this;
+                sink.Dispose();
             }
 
             protected override void Done()
@@ -66,7 +67,8 @@ namespace System.Reactive.Linq.Observαble
                 else
                     base._observer.OnCompleted();
 
-                base.Dispose();
+                Sink<TSource> sink = this;
+                sink.Dispose();
             }
         }
     }
