@@ -1,0 +1,91 @@
+diff --git "a/Rx.NET/System.Reactive.Linq/Reactive/Linq/Observable/Catch.cs" "b/Rx.NET/System.Reactive.Linq/Reactive/Linq/Observable/Catch.cs"
+index 71e0037..21dd86c 100644
+--- "a/Rx.NET/System.Reactive.Linq/Reactive/Linq/Observable/Catch.cs"
++++ "b/Rx.NET/System.Reactive.Linq/Reactive/Linq/Observable/Catch.cs"
+@@ -56,7 +56,8 @@ public override void OnError(Exception error)
+             public override void OnCompleted()
+             {
+                 base._observer.OnCompleted();
+-                base.Dispose();
++                Sink<TSource> sink = this;
++                sink.Dispose();
+             }
+ 
+             protected override void Done()
+@@ -66,7 +67,8 @@ protected override void Done()
+                 else
+                     base._observer.OnCompleted();
+ 
+-                base.Dispose();
++                Sink<TSource> sink = this;
++                sink.Dispose();
+             }
+         }
+     }
+@@ -180,4 +182,4 @@ public void OnCompleted()
+         }
+     }
+ }
+-#endif
+\ No newline at end of file
++#endif
+diff --git "a/Rx.NET/System.Reactive.Linq/Reactive/Linq/Observable/Concat.cs" "b/Rx.NET/System.Reactive.Linq/Reactive/Linq/Observable/Concat.cs"
+index 5a9b2e4..62ea94b 100644
+--- "a/Rx.NET/System.Reactive.Linq/Reactive/Linq/Observable/Concat.cs"
++++ "b/Rx.NET/System.Reactive.Linq/Reactive/Linq/Observable/Concat.cs"
+@@ -44,9 +44,10 @@ public override void OnNext(TSource value)
+             public override void OnError(Exception error)
+             {
+                 base._observer.OnError(error);
+-                base.Dispose();
++                Sink<TSource> sink = this;
++                sink.Dispose();
+             }
+         }
+     }
+ }
+-#endif
+\ No newline at end of file
++#endif
+diff --git "a/Rx.NET/System.Reactive.Linq/Reactive/Linq/Observable/DoWhile.cs" "b/Rx.NET/System.Reactive.Linq/Reactive/Linq/Observable/DoWhile.cs"
+index 3ef40eb..c7e0354 100644
+--- "a/Rx.NET/System.Reactive.Linq/Reactive/Linq/Observable/DoWhile.cs"
++++ "b/Rx.NET/System.Reactive.Linq/Reactive/Linq/Observable/DoWhile.cs"
+@@ -46,7 +46,8 @@ public override void OnNext(TSource value)
+             public override void OnError(Exception error)
+             {
+                 base._observer.OnError(error);
+-                base.Dispose();
++                Sink<TSource> sink = this;
++                sink.Dispose();
+             }
+         }
+     }
+diff --git "a/Rx.NET/System.Reactive.Linq/Reactive/Linq/Observable/For.cs" "b/Rx.NET/System.Reactive.Linq/Reactive/Linq/Observable/For.cs"
+index 85b9e03..79cd644 100644
+--- "a/Rx.NET/System.Reactive.Linq/Reactive/Linq/Observable/For.cs"
++++ "b/Rx.NET/System.Reactive.Linq/Reactive/Linq/Observable/For.cs"
+@@ -45,7 +45,8 @@ public override void OnNext(TResult value)
+             public override void OnError(Exception error)
+             {
+                 base._observer.OnError(error);
+-                base.Dispose();
++                Sink<TResult> sink = this;
++                sink.Dispose();
+             }
+         }
+     }
+diff --git "a/Rx.NET/System.Reactive.Linq/Reactive/Linq/Observable/While.cs" "b/Rx.NET/System.Reactive.Linq/Reactive/Linq/Observable/While.cs"
+index 178e4c8..c747e66 100644
+--- "a/Rx.NET/System.Reactive.Linq/Reactive/Linq/Observable/While.cs"
++++ "b/Rx.NET/System.Reactive.Linq/Reactive/Linq/Observable/While.cs"
+@@ -45,7 +45,8 @@ public override void OnNext(TSource value)
+             public override void OnError(Exception error)
+             {
+                 base._observer.OnError(error);
+-                base.Dispose();
++                Sink<TSource> sink = this;
++                sink.Dispose();
+             }
+         }
+     }
